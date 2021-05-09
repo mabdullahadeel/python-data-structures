@@ -9,7 +9,7 @@ Exceptin: Throws error if the a valid
 """
 
 
-def convet_to_binary(number):
+def convert_to_binary(number):
 	if type(number) != int : 
 		raise TypeError(f"Expected a number but found {type(number)}")
 
@@ -27,7 +27,9 @@ def convet_to_binary(number):
 
 	return int(result)
 
-# Test
-test_int = 60  # Expected Output: 111100
-result = convet_to_binary(60)
-print(result)
+
+if __name__ == "__main__":
+	# Test
+	test_int = 60  # Expected Output: 111100
+	result = convert_to_binary(60)
+	print(result)

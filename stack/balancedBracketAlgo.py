@@ -40,7 +40,9 @@ def are_parenthesis_balanced(paren_str):
 	else: 
 		return False
 
-# Test
-test_paren_str = "{({([])})}"
 
-print(are_parenthesis_balanced(test_paren_str))
+if __name__ == "__main__":
+	# Test
+	test_paren_str = "{({([])})}"
+
+	print(are_parenthesis_balanced(test_paren_str))
