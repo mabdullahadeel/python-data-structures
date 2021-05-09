@@ -1,6 +1,5 @@
 from stack import Stack
 
-
 def is_valid_pair(opening, closing):
 	# Process the brackets and see if they are valid pair
 	pairs = {"(": ")", "[": "]", "{": "}"}
