@@ -31,5 +31,5 @@ def convert_to_binary(number):
 if __name__ == "__main__":
 	# Test
 	test_int = 60  # Expected Output: 111100
-	result = convert_to_binary(60)
+	result = convert_to_binary(test_int)
 	print(result)
