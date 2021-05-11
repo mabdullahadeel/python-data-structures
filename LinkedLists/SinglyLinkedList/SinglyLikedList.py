@@ -64,10 +64,34 @@ class SinglyLinkedList:
 		prev_node.next = new_node
 
 
+	def delete_node(self, key):
+		current_node = self.head
+
+		if current_node and current_node.data == key:	# Node to be deleted is the head
+			self.head = current_node.next
+			current_node = None
+			return
+
+		prev = None
+		while current_node and current_node.data != key:
+			prev = current_node
+			current_node = current_node.next
+
+		if current_node is None:
+			raise Exception(f"COULD NOT FIND THE NODE TO DELETE AT {key}")
+
+		prev.next = current_node.next
+		current_node = None
+
+
 if __name__ == "__main__":
 	llist = SinglyLinkedList()
 	llist.append("A")
 	llist.append("B")
 	llist.append("C")
-	llist.insert_after_node(llist.head, "D")
+	llist.append("D")
+
+	llist.delete_node("B")
+	# llist.delete_node("E") % line that will raise exception %
+
 	llist.print_list()
