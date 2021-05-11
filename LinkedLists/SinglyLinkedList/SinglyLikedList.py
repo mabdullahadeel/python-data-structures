@@ -69,8 +69,5 @@ if __name__ == "__main__":
 	llist.append("A")
 	llist.append("B")
 	llist.append("C")
-
-
 	llist.insert_after_node(llist.head, "D")
-
-	llist.print_list() 
+	llist.print_list()
