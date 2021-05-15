@@ -1,6 +1,6 @@
 """
 Linked List vs Arrays:
-	Lineked List						Arrays
+	Linked List						Arrays
 	Insertion at index 0: O(1)			Insertionat index 0: O(n)
 	Deletion at index 0: O(1)			Deletion at index 0: O(n)
 	Access Element: O(n)				Access Element: O(1)
@@ -84,6 +84,29 @@ class SinglyLinkedList:
 		current_node = None
 
 
+	def delete_node_at_position(self, position):
+		if self.head is None: return
+
+		current_node = self.head
+		if position == 0:  		# Node to delete is at the haed position
+			self.head = current_node.next
+			current_node = None
+			return
+
+		prev_node = None
+		count = 0
+		while current_node and count != position:
+			prev_node = current_node
+			current_node = prev.next
+			count += 1
+
+		if current_node is None:
+			raise Exception(f"COULD NOT FIND THE ITEM TO DELETE AT {position}")
+
+		prev_node.next = current_node.next
+		current_node = None
+
+
 if __name__ == "__main__":
 	llist = SinglyLinkedList()
 	llist.append("A")
@@ -91,7 +114,8 @@ if __name__ == "__main__":
 	llist.append("C")
 	llist.append("D")
 
+	llist.delete_node_at_position(0)
 	llist.delete_node("B")
-	# llist.delete_node("E") % line that will raise exception %
+	# llist.delete_node("E") # % line that will raise exception %
 
 	llist.print_list()
