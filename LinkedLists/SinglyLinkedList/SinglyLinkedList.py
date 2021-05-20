@@ -107,6 +107,90 @@ class SinglyLinkedList:
 		current_node = None
 
 
+	def length(self):
+		current_node = self.head
+		count = 0
+		while current_node:
+			current_node = current_node.next
+			count += 1
+
+		return count
+
+	def len_recursive(self, node):
+		if node is None:
+		    return 0
+		return 1 + self.len_recursive(node.next)
+
+
+	def swap_nodes(self, key1, key2):
+		if key1 == key2:
+			raise Exception("GIVEN NODES MUST BE DIFFERENT TO BE SWAPPED")
+
+		prev_node_1 = None
+		current_node_1 = self.head
+
+		while current_node_1 and current_node_1.data != key1:
+			prev_node_1 = current_node_1
+			current_node_1 = current_node_1.next
+
+		prev_node_2 = None
+		current_node_2 = self.head
+
+		while current_node_2 and current_node_2.data != key2:
+			prev_node_2 = current_node_2
+			current_node_2 = current_node_2.next
+
+
+		if not current_node_1 or not current_node_2:
+			raise Exception("COULD NOT FIND THE NODE TO SWAP")
+
+
+		# Handling the cases of one of the nodes at the `head`
+		if prev_node_1:
+			prev_node_1.next = current_node_2
+		else:
+			self.head = current_node_2
+
+		if prev_node_2:
+			prev_node_2.next = current_node_1
+		else:
+			self.head = current_node_1
+
+
+		current_node_1.next, current_node_2.next = current_node_2.next, current_node_1.next
+
+	# def swap_nodes(self, key_1, key_2):
+
+	# 	if key_1 == key_2:
+	# 	    return 
+
+	# 	prev_1 = None 
+	# 	curr_1 = self.head 
+	# 	while curr_1 and curr_1.data != key_1:
+	# 	    prev_1 = curr_1 
+	# 	    curr_1 = curr_1.next
+
+	# 	prev_2 = None 
+	# 	curr_2 = self.head 
+	# 	while curr_2 and curr_2.data != key_2:
+	# 	    prev_2 = curr_2 
+	# 	    curr_2 = curr_2.next
+
+	# 	if not curr_1 or not curr_2:
+	# 	    return 
+
+	# 	if prev_1:
+	# 	    prev_1.next = curr_2
+	# 	else:
+	# 	    self.head = curr_2
+
+	# 	if prev_2:
+	# 	    prev_2.next = curr_1
+	# 	else:
+	# 	    self.head = curr_1
+
+	# 	curr_1.next, curr_2.next = curr_2.next, curr_1.next
+
 if __name__ == "__main__":
 	llist = SinglyLinkedList()
 	llist.append("A")
@@ -114,8 +198,7 @@ if __name__ == "__main__":
 	llist.append("C")
 	llist.append("D")
 
-	llist.delete_node_at_position(0)
-	llist.delete_node("B")
-	# llist.delete_node("E") # % line that will raise exception %
-
+	llist.swap_nodes("B", "C")
+	print("Swapping nodes B and C that are not head nodes")
 	llist.print_list()
+
