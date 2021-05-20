@@ -159,46 +159,104 @@ class SinglyLinkedList:
 
 		current_node_1.next, current_node_2.next = current_node_2.next, current_node_1.next
 
-	# def swap_nodes(self, key_1, key_2):
 
-	# 	if key_1 == key_2:
-	# 	    return 
+	def reverse_list_iterative(self):
+		"""
+			Iterative approach to reverse a linked list
+		"""
+		prev_node = None
+		current_node = self.head
 
-	# 	prev_1 = None 
-	# 	curr_1 = self.head 
-	# 	while curr_1 and curr_1.data != key_1:
-	# 	    prev_1 = curr_1 
-	# 	    curr_1 = curr_1.next
+		while current_node:
+			next_node = current_node.next
+			current_node.next = prev_node
+			prev_node = current_node
+			current_node = next_node
 
-	# 	prev_2 = None 
-	# 	curr_2 = self.head 
-	# 	while curr_2 and curr_2.data != key_2:
-	# 	    prev_2 = curr_2 
-	# 	    curr_2 = curr_2.next
+		self.head = prev_node
+		
 
-	# 	if not curr_1 or not curr_2:
-	# 	    return 
+	def reverse_recursive(self):
+		"""
+			Recursive Approach to reverse Singly Linked Lists
+		"""
 
-	# 	if prev_1:
-	# 	    prev_1.next = curr_2
-	# 	else:
-	# 	    self.head = curr_2
+		def _reverse_recursive(current_node, prev_node):
+			if not current_node:
+				return prev_node
 
-	# 	if prev_2:
-	# 	    prev_2.next = curr_1
-	# 	else:
-	# 	    self.head = curr_1
+			next_node = current_node.next
+			current_node.next = prev_node
+			prev_node = current_node
+			current_node = next_node
+			return _reverse_recursive(current_node, prev_node)
 
-	# 	curr_1.next, curr_2.next = curr_2.next, curr_1.next
+		self.head = _reverse_recursive(current_node=self.head, prev_node=None)
+
+
+	def merge_sorted(self, other_linked_list):
+		"""
+			Merging two already sorted Signly Linked Lists
+			to output a final sorted merged linked List
+			Assunmption:
+				- Each participant list have at least one character
+		"""	
+		pointerP = self.head
+		pointerQ = other_linked_list.head
+		pointerS = None
+
+		if not pointerP:
+			return pointerQ
+		if not pointerQ:
+			return pointerP
+
+		# 'pointerS' will always have a reference to the smaller of two lists
+		if pointerP and pointerQ:
+			if pointerP.data <= pointerQ.data:
+				pointerS = pointerP
+				pointerP = pointerS.next
+			else:
+				pointerS = pointerQ
+				pointerQ = pointerS.next
+			new_head = pointerS
+
+		while pointerP and pointerQ:
+			if pointerP.data <= pointerQ.data:
+				pointerS.next = pointerP
+				pointerS = pointerP
+				pointerP = pointerS.next
+			else:
+				pointerS.next = pointerQ
+				pointerS = pointerQ
+				pointerQ = pointerS.next
+
+		# End of one of the list
+		if not pointerP:
+			pointerS.next = pointerQ
+		if not pointerQ:
+			pointerS.next = pointerP
+
+		self.head = new_head
+		return self.head
+
 
 if __name__ == "__main__":
-	llist = SinglyLinkedList()
-	llist.append("A")
-	llist.append("B")
-	llist.append("C")
-	llist.append("D")
+	llist_1 = SinglyLinkedList()
+	llist_2 = SinglyLinkedList()
 
-	llist.swap_nodes("B", "C")
-	print("Swapping nodes B and C that are not head nodes")
-	llist.print_list()
+	llist_1.append(1)
+	llist_1.append(5)
+	llist_1.append(7)
+	llist_1.append(9)
+	llist_1.append(10)
+
+	llist_2.append(2)
+	llist_2.append(3)
+	llist_2.append(4)
+	llist_2.append(6)
+	llist_2.append(8)
+	llist_2.append(69)
+
+	llist_1.merge_sorted(llist_2)
+	llist_1.print_list()
 
