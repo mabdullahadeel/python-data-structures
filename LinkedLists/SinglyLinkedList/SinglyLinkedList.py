@@ -240,6 +240,39 @@ class SinglyLinkedList:
 		return self.head
 
 
+	def remove_duplicates(self):
+		"""
+			Remove nodes with duplicated data keeping one of a kind
+			To keep track, Hask map has been used here
+		"""
+		current_node = self.head
+		prev_node = None
+		duplicate_vals = dict()
+
+		while current_node:
+			if current_node.data in duplicate_vals:
+				# Delete the node
+				prev_node.next =   current_node.next
+				current_node = None
+			else:
+				duplicate_vals[current_node.data] = 1
+				prev_node = current_node
+			current_node = prev_node.next
+
+
 if __name__ == "__main__":
-	pass
+	llist = SinglyLinkedList()
+	llist.append(1)
+	llist.append(6)
+	llist.append(1)
+	llist.append(4)
+	llist.append(2)
+	llist.append(2)
+	llist.append(4)
+
+	print("Original Linked List")
+	llist.print_list()
+	print("Linked List After Removing Duplicates")
+	llist.remove_duplicates()
+	llist.print_list()
 
