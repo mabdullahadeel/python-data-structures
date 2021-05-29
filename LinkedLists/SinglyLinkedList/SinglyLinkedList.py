@@ -334,6 +334,96 @@ class SinglyLinkedList:
 		else: return None
 
 
+	def list_is_palindrome(self, method):
+		"""
+			This method checks if the current state of the linked list is palindrome
+			method: there are three methods implemented, so pass argument between 1 - 3
+		"""
+		if method < 1 or method > 2:
+			raise Exception("arg 'method' should be between 1 and 2")
+
+		if method == 1:
+			# Using python's string funcs to get desired output
+			s_string = ""
+			node = self.head
+			while node:
+				s_string += node.data
+				node = node.next
+
+			return s_string == s_string[::-1]
+		
+		elif method == 2:
+			# Using Lists -- Stack can also be used here
+			saved_res = []
+			node = self.head
+
+			while node:
+				saved_res.append(node.data)
+				node = node.next
+
+			node = self.head
+
+			while node:
+				data = saved_res.pop()
+				if data != node.data:
+					return False
+				node = node.next
+
+			return True
+
+
+		def move_tail_to_head(self):
+	        if self.head and self.head.next:
+	            last_node = self.head
+	            to_be_last_node = None
+
+	            while last_node.next:
+	                to_be_last_node = last_node
+	                last_node = last_node.next
+
+	            last_node.next = self.head
+	            to_be_last_node.next = None
+	            self.head = last_node
+
+
+       	def sum_two_lists(self, other_list):
+			if not isinstance(other_list, SinglyLinkedList):
+				raise Exception("INVALID LIST PROVIDED")
+
+			pointerP = self.head
+			pointerQ = other_list.head
+
+			sum_list = SinglyLinkedList()
+			carry = 0
+
+			while pointerP or pointerQ:
+				if not pointerP:
+					p_data = 0
+				else:
+					p_data = pointerP.data
+
+				if not pointerQ:
+					q_data = 0
+				else:
+					q_data = pointerQ.data
+
+				c_sum = p_data + q_data + carry
+
+				if c_sum >= 10:
+					carry = 1
+					remainder = c_sum % 10
+					sum_list.append(remainder)
+				else:
+					carry = 0
+					sum_list.append(c_sum)
+
+				if pointerP:
+					pointerP = pointerP.next
+				if pointerQ:
+					pointerQ = pointerQ.next
+			return sum_list
+
+
 
 if __name__ == "__main__":
 	pass
