@@ -261,6 +261,9 @@ class SinglyLinkedList:
 
 
 	def get_nth_from_last(self, n):
+		"""
+			Returns the data of nth node from the last of the Linked List
+		"""
 		total_length = self.length()
 
 		if n > total_length:
@@ -280,13 +283,58 @@ class SinglyLinkedList:
 			return None
 
 
+	def get_occurance_iterative(self, data):
+		current_node = self.head
+		count = 0
+		
+		while current_node:
+			if current_node.data == data:
+				count += 1
+
+			current_node = current_node.next
+
+		return count
+
+
+	def get_occurance_recursive(self, node, data):
+		if not node:
+			return 0
+
+		if node.data == data:
+			return 1 + self.get_occurance_recursive(node.next, data)
+		else:
+			return self.get_occurance_recursive(node.next, data)
+
+
+	def rotate(self, pivot):
+		"""
+			Rotates the linked list around a given pivot<int> representing the position
+		"""
+		if self.head and self.head.next:
+			pointerP = pointerQ = self.head
+			prev = None
+			count = 0
+
+			while pointerP and count < pivot:  # getting the ref to 'pivot' node
+				prev = pointerP
+				pointerP = pointerP.next
+				pointerQ = pointerQ.next
+				count += 1
+			pointerP = prev
+
+			while pointerQ:
+				prev = pointerQ
+				pointerQ = pointerQ.next
+			pointerQ = prev
+
+			pointerQ.next = self.head
+			self.head = pointerP.next
+			pointerP.next = None
+
+		else: return None
+
+
 
 if __name__ == "__main__":
-	llist = SinglyLinkedList()
-	llist.append("A")
-	llist.append("B")
-	llist.append("C")
-	llist.append("D")
-
-	print(llist.get_nth_from_last(2))  # Expected Output: C
+	pass
 
