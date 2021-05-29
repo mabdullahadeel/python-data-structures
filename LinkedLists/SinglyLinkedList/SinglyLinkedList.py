@@ -260,19 +260,33 @@ class SinglyLinkedList:
 			current_node = prev_node.next
 
 
+	def get_nth_from_last(self, n):
+		total_length = self.length()
+
+		if n > total_length:
+			raise Exception(f"{n} CANNOT BE GREATER THAN THE LENGTH OF LINKED LIST")
+
+		if n < 0:
+			raise Exception("NEGATIVE INTEGERS ARE NOT ALLOWED")			
+
+		current_node = self.head
+		while current_node:
+			if total_length == n:
+				return current_node.data
+			total_length -= 1
+			current_node = current_node.next
+
+		if current_node is None:
+			return None
+
+
+
 if __name__ == "__main__":
 	llist = SinglyLinkedList()
-	llist.append(1)
-	llist.append(6)
-	llist.append(1)
-	llist.append(4)
-	llist.append(2)
-	llist.append(2)
-	llist.append(4)
+	llist.append("A")
+	llist.append("B")
+	llist.append("C")
+	llist.append("D")
 
-	print("Original Linked List")
-	llist.print_list()
-	print("Linked List After Removing Duplicates")
-	llist.remove_duplicates()
-	llist.print_list()
+	print(llist.get_nth_from_last(2))  # Expected Output: C
 
