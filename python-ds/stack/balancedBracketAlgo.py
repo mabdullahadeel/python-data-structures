@@ -1,4 +1,12 @@
-from stack import Stack
+from .stack import Stack
+
+
+"""
+The function `are_parenthesis_balanced` is a simple function
+that checks if a given string has balanced bracket pair and
+returns a boolean respectively
+"""
+
 
 def is_valid_pair(opening, closing):
 	# Process the brackets and see if they are valid pair
