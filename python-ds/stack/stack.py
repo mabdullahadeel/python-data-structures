@@ -33,6 +33,13 @@ class Stack():
 
 
 	def peek(self):
+		"""
+			Returns the last inserted item in the stack i-e
+			the item at the top of the stack
+			- -->
+			-
+			-
+		"""
 		if not self.is_empty():
 			return self.items[-1]
 		else:
