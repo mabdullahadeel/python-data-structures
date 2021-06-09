@@ -3,7 +3,7 @@ from ..stack import Stack
 
 class StackTestClass(Stack):
 	"""
-		A helper calss wrapped around the main
+		A helper class wrapped around the main
 		'Stack' class to provide additional 
 		functionality for testing purpose
 	"""
