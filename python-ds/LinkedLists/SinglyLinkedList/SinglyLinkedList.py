@@ -97,7 +97,7 @@ class SinglyLinkedList:
 		count = 0
 		while current_node and count != position:
 			prev_node = current_node
-			current_node = prev.next
+			current_node = prev_node.next
 			count += 1
 
 		if current_node is None:
@@ -118,7 +118,7 @@ class SinglyLinkedList:
 
 	def len_recursive(self, node):
 		if node is None:
-		    return 0
+			return 0
 		return 1 + self.len_recursive(node.next)
 
 
@@ -373,20 +373,20 @@ class SinglyLinkedList:
 
 
 		def move_tail_to_head(self):
-	        if self.head and self.head.next:
-	            last_node = self.head
-	            to_be_last_node = None
+			if self.head and self.head.next:
+				last_node = self.head
+				to_be_last_node = None
 
-	            while last_node.next:
-	                to_be_last_node = last_node
-	                last_node = last_node.next
+				while last_node.next:
+					to_be_last_node = last_node
+					last_node = last_node.next
 
-	            last_node.next = self.head
-	            to_be_last_node.next = None
-	            self.head = last_node
+				last_node.next = self.head
+				to_be_last_node.next = None
+				self.head = last_node
 
 
-       	def sum_two_lists(self, other_list):
+		def sum_two_lists(self, other_list):
 			if not isinstance(other_list, SinglyLinkedList):
 				raise Exception("INVALID LIST PROVIDED")
 

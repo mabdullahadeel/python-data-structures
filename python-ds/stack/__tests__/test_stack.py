@@ -1,7 +1,7 @@
 from ..stack import Stack
 
 
-class StackTestClas(Stack):
+class StackTestClass(Stack):
 	"""
 		A helper calss wrapped around the main
 		'Stack' class to provide additional 
@@ -14,11 +14,11 @@ class StackTestClas(Stack):
 
 
 class TestStack:
-	''' Actual Test Class '''
+	""" Actual Test Class """
 
 
 	def test_get_stack(self):
-		stack = StackTestClas()
+		stack = StackTestClass()
 		test_list = ["A", "B", "C", 1, 2, 3, True]
 
 		for i in test_list:
@@ -28,7 +28,7 @@ class TestStack:
 
 
 	def test_push(self):
-		stack = StackTestClas()
+		stack = StackTestClass()
 
 		test_list = ["A", "B", "C"]
 		for i in test_list:
@@ -38,7 +38,7 @@ class TestStack:
 
 
 	def test_pop(self):
-		stack = StackTestClas()
+		stack = StackTestClass()
 
 		test_list = [1, 2, 3, 4, 5]
 		for i in test_list:
@@ -57,7 +57,7 @@ class TestStack:
 
 
 	def test_is_empty(self):
-		stack = StackTestClas()
+		stack = StackTestClass()
 		test_list = ["A", "B", "C", 1, 2, 3]
 
 		# adding all
@@ -65,14 +65,14 @@ class TestStack:
 			stack.push(i)
 
 		# removing all 
-		for i in range(len(test_list)):
+		for _i in range(len(test_list)):
 			stack.pop()
 
 		assert stack.is_empty() == True
 
 
 	def test_peek(self):
-		stack = StackTestClas()
+		stack = StackTestClass()
 		test_list = ["A", "B", "C", 1, 2, 3, True]
 
 		for i in test_list:
