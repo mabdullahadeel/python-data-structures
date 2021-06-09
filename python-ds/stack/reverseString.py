@@ -21,9 +21,3 @@ def reverse_string(string):
 		reversed_str += stack.pop()
 
 	return reversed_str
-
-
-# Test
-test_str = "Hello Stack"
-res = reverse_string(test_str)
-print(res)
