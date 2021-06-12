@@ -4,7 +4,7 @@ import pytest
 class HelpTestSinglyLinkedList(SinglyLinkedList):
     """
     		A helper class wrapped around the main
-    		'Stack' class to provide additional
+    		'SinglyLinkedList' class to provide additional
     		functionality for testing purpose
     """
 
@@ -212,4 +212,95 @@ class TestSinglyLinkedLists:
         with pytest.raises(ValueError):
             llist.get_nth_from_last(-1)
 
+        assert llist.get_nth_from_last(2) == test_sample[-2]
+
+
+    def test_occurrence_iterative(self):
+        llist = HelpTestSinglyLinkedList()
+        sample_test = [1, 2, 3, 2, 3, 2, 1, 2, 2]
+        test_entry = 2
+
+        for i in sample_test:
+            llist.append(i)
+
+        assert llist.get_occurrence_iterative(test_entry) == sample_test.count(test_entry)
+
+
+    def test_get_occurrence_recursive(self):
+        llist = HelpTestSinglyLinkedList()
+        sample_test = [1, 2, 3, 2, 3, 2, 1, 2, 2]
+        test_entry = 2
+
+        for i in sample_test:
+            llist.append(i)
+
+        assert llist.get_occurrence_recursive(llist.head, test_entry) == sample_test.count(test_entry)
+
+
+    def test_rotate(self):
+        llist = HelpTestSinglyLinkedList()
+        test_sample = [1, 2, 3, 4, 5, 6]
+
+        for i in test_sample:
+            llist.append(i)
+
+        llist.rotate(test_sample[3])    # rotates around '4'
+
+        assert llist.get_linked_list_as_list() == [5, 6, 1, 2, 3, 4]
+
+
+    def test_list_is_palindrome(self):
+        llist = HelpTestSinglyLinkedList()
+        test_samples = ["R", "A", "C", "E", "C", "A", "R"]
+
+        for i in test_samples:
+            llist.append(i)
+
+        assert llist.list_is_palindrome(method=1) == True
+
+
+    def test_list_is_not_palindrome(self):
+        llist = HelpTestSinglyLinkedList()
+        test_samples = ["R", "A", "C"]
+
+        for i in test_samples:
+            llist.append(i)
+
+        assert llist.list_is_palindrome(method=2) == False
+
+
+    def test_move_tail_to_head(self):
+        llist = HelpTestSinglyLinkedList()
+        test_samples = [3, 2, 1]
+
+        for i in test_samples:
+            llist.append(i)
+
+        assert llist.move_tail_to_head() == test_samples.reverse()
+
+
+    def test_sum_two_lists(self):
+        llist_1_number = 334
+        llist_2_number = 567
+
+        llist_1 = HelpTestSinglyLinkedList()
+        llist_2 = HelpTestSinglyLinkedList()
+
+        for i in (str(llist_1_number))[::-1]:   # actual num when appended ==> 433
+            llist_1.append(int(i))
+
+
+        for j in (str(llist_2_number))[::-1]:
+            llist_2.append(int(j))
+
+        res_llist = llist_1.sum_two_lists(llist_2)
+        results = []
+        current_node = res_llist.head
+        while current_node:
+            results.append(str(current_node.data))
+            current_node = current_node.next
+
+        expected_res = llist_1_number + llist_2_number
+
+        assert int("".join(results[::-1])) == expected_res
 
