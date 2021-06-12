@@ -124,7 +124,7 @@ class SinglyLinkedList:
 
 	def swap_nodes(self, key1, key2):
 		if key1 == key2:
-			raise Exception("GIVEN NODES MUST BE DIFFERENT TO BE SWAPPED")
+			raise ValueError("GIVEN NODES MUST BE DIFFERENT TO BE SWAPPED")
 
 		prev_node_1 = None
 		current_node_1 = self.head
@@ -196,9 +196,9 @@ class SinglyLinkedList:
 
 	def merge_sorted(self, other_linked_list):
 		"""
-			Merging two already sorted Signly Linked Lists
+			Merging two already sorted Singly Linked Lists
 			to output a final sorted merged linked List
-			Assunmption:
+			Assumption:
 				- Each participant list have at least one character
 		"""	
 		pointerP = self.head
@@ -267,10 +267,10 @@ class SinglyLinkedList:
 		total_length = self.length()
 
 		if n > total_length:
-			raise Exception(f"{n} CANNOT BE GREATER THAN THE LENGTH OF LINKED LIST")
+			raise ValueError(f"{n} CANNOT BE GREATER THAN THE LENGTH OF LINKED LIST")
 
 		if n < 0:
-			raise Exception("NEGATIVE INTEGERS ARE NOT ALLOWED")			
+			raise ValueError("NEGATIVE INTEGERS ARE NOT ALLOWED")
 
 		current_node = self.head
 		while current_node:
@@ -283,7 +283,7 @@ class SinglyLinkedList:
 			return None
 
 
-	def get_occurance_iterative(self, data):
+	def get_occurrence_iterative(self, data):
 		current_node = self.head
 		count = 0
 		
@@ -296,14 +296,14 @@ class SinglyLinkedList:
 		return count
 
 
-	def get_occurance_recursive(self, node, data):
+	def get_occurrence_recursive(self, node, data):
 		if not node:
 			return 0
 
 		if node.data == data:
-			return 1 + self.get_occurance_recursive(node.next, data)
+			return 1 + self.get_occurrence_recursive(node.next, data)
 		else:
-			return self.get_occurance_recursive(node.next, data)
+			return self.get_occurrence_recursive(node.next, data)
 
 
 	def rotate(self, pivot):
@@ -372,56 +372,56 @@ class SinglyLinkedList:
 			return True
 
 
-		def move_tail_to_head(self):
-			if self.head and self.head.next:
-				last_node = self.head
-				to_be_last_node = None
+	def move_tail_to_head(self):
+		if self.head and self.head.next:
+			last_node = self.head
+			to_be_last_node = None
 
-				while last_node.next:
-					to_be_last_node = last_node
-					last_node = last_node.next
+			while last_node.next:
+				to_be_last_node = last_node
+				last_node = last_node.next
 
-				last_node.next = self.head
-				to_be_last_node.next = None
-				self.head = last_node
+			last_node.next = self.head
+			to_be_last_node.next = None
+			self.head = last_node
 
 
-		def sum_two_lists(self, other_list):
-			if not isinstance(other_list, SinglyLinkedList):
-				raise Exception("INVALID LIST PROVIDED")
+	def sum_two_lists(self, other_list):
+		if not isinstance(other_list, SinglyLinkedList):
+			raise Exception("INVALID LIST PROVIDED")
 
-			pointerP = self.head
-			pointerQ = other_list.head
+		pointerP = self.head
+		pointerQ = other_list.head
 
-			sum_list = SinglyLinkedList()
-			carry = 0
+		sum_list = SinglyLinkedList()
+		carry = 0
 
-			while pointerP or pointerQ:
-				if not pointerP:
-					p_data = 0
-				else:
-					p_data = pointerP.data
+		while pointerP or pointerQ:
+			if not pointerP:
+				p_data = 0
+			else:
+				p_data = pointerP.data
 
-				if not pointerQ:
-					q_data = 0
-				else:
-					q_data = pointerQ.data
+			if not pointerQ:
+				q_data = 0
+			else:
+				q_data = pointerQ.data
 
-				c_sum = p_data + q_data + carry
+			c_sum = p_data + q_data + carry
 
-				if c_sum >= 10:
-					carry = 1
-					remainder = c_sum % 10
-					sum_list.append(remainder)
-				else:
-					carry = 0
-					sum_list.append(c_sum)
+			if c_sum >= 10:
+				carry = 1
+				remainder = c_sum % 10
+				sum_list.append(remainder)
+			else:
+				carry = 0
+				sum_list.append(c_sum)
 
-				if pointerP:
-					pointerP = pointerP.next
-				if pointerQ:
-					pointerQ = pointerQ.next
-			return sum_list
+			if pointerP:
+				pointerP = pointerP.next
+			if pointerQ:
+				pointerQ = pointerQ.next
+		return sum_list
 
 
 
