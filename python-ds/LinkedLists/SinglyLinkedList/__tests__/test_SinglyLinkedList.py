@@ -1,5 +1,5 @@
 from ..SinglyLinkedList import SinglyLinkedList
-
+import pytest
 
 class HelpTestSinglyLinkedList(SinglyLinkedList):
     """
@@ -103,3 +103,113 @@ class TestSinglyLinkedLists:
         passed_body_deletion = llist.get_linked_list_as_list() == resulted_sample
 
         assert passed_head_deletion and passed_body_deletion
+
+
+    def test_legth(self):
+        llist = HelpTestSinglyLinkedList()
+        test_samples = [True, 1, "A", "B", 2, "C"]
+        for i in test_samples:
+            llist.append(i)
+
+        assert llist.length() == len(test_samples)
+
+
+    def test_length_recursive(self):
+        llist = HelpTestSinglyLinkedList()
+        test_samples = [True, 1, "A", "B", 2, "C"]
+        for i in test_samples:
+            llist.append(i)
+
+        assert llist.len_recursive(llist.head) == len(test_samples)
+
+
+    def test_node_swap(self):
+        llist = HelpTestSinglyLinkedList()
+        test_samples = ["A", "B", "D", "C"]
+        for i in test_samples:
+            llist.append(i)
+
+        # Testing the error case
+        with pytest.raises(ValueError):
+            llist.swap_nodes("B", "B")
+
+        # Base Case
+        expected_output = ["A", "B", "C", "D"]
+        llist.swap_nodes("D", "C")
+        assert llist.get_linked_list_as_list() == expected_output
+
+        # head case
+        expected_output_head_node = ["B", "A", "C", "D"]
+        llist.swap_nodes("A", "B")
+        assert llist.get_linked_list_as_list() == expected_output_head_node
+
+
+    def test_reverse_list_iterative(self):
+        llist = HelpTestSinglyLinkedList()
+        test_samples = [1, 2, 3]
+
+        for i in test_samples:
+            llist.append(i)
+        llist.reverse_list_iterative()
+        assert llist.get_linked_list_as_list() == test_samples[::-1]
+
+
+    def test_reverse_list_recursive(self):
+        llist = HelpTestSinglyLinkedList()
+        test_samples = [1, 2, 3]
+
+        for i in test_samples:
+            llist.append(i)
+
+        llist.reverse_recursive()
+
+        assert llist.get_linked_list_as_list() == test_samples[::-1]
+
+
+    def test_merge_sort(self):
+        llist_1 = HelpTestSinglyLinkedList()
+        llist_2 = HelpTestSinglyLinkedList()
+
+        test_sample_1 = [1, 5, 7, 9, 10]
+        for i in test_sample_1:
+            llist_1.append(i)
+
+        test_sample_2 = [2, 3, 4, 6, 8]
+        for j in test_sample_2:
+            llist_2.append(j)
+
+        llist_1.merge_sorted(llist_2)
+        expected_list = test_sample_1 + test_sample_2
+        expected_list.sort()
+        assert llist_1.get_linked_list_as_list() == expected_list
+
+
+    def test_remove_duplicates(self):
+        llist = HelpTestSinglyLinkedList()
+        test_samples = [1, 2, 3, 2, 3]
+
+        for i in test_samples:
+            llist.append(i)
+
+        llist.remove_duplicates()
+        expected_output = list(set(test_samples))
+
+        assert llist.get_linked_list_as_list() == expected_output
+
+
+    def test_get_nth_from_last(self):
+        llist = HelpTestSinglyLinkedList()
+        test_sample = [1, 2, 3, 4]
+
+        for i in test_sample:
+            llist.append(i)
+
+        # Testing error handling
+        with pytest.raises(ValueError):
+            llist.get_nth_from_last(len(test_sample) + 1)
+
+        # Testing negative integers
+        with pytest.raises(ValueError):
+            llist.get_nth_from_last(-1)
+
+

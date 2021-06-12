@@ -124,7 +124,7 @@ class SinglyLinkedList:
 
 	def swap_nodes(self, key1, key2):
 		if key1 == key2:
-			raise Exception("GIVEN NODES MUST BE DIFFERENT TO BE SWAPPED")
+			raise ValueError("GIVEN NODES MUST BE DIFFERENT TO BE SWAPPED")
 
 		prev_node_1 = None
 		current_node_1 = self.head
@@ -196,9 +196,9 @@ class SinglyLinkedList:
 
 	def merge_sorted(self, other_linked_list):
 		"""
-			Merging two already sorted Signly Linked Lists
+			Merging two already sorted Singly Linked Lists
 			to output a final sorted merged linked List
-			Assunmption:
+			Assumption:
 				- Each participant list have at least one character
 		"""	
 		pointerP = self.head
@@ -267,10 +267,10 @@ class SinglyLinkedList:
 		total_length = self.length()
 
 		if n > total_length:
-			raise Exception(f"{n} CANNOT BE GREATER THAN THE LENGTH OF LINKED LIST")
+			raise ValueError(f"{n} CANNOT BE GREATER THAN THE LENGTH OF LINKED LIST")
 
 		if n < 0:
-			raise Exception("NEGATIVE INTEGERS ARE NOT ALLOWED")			
+			raise ValueError("NEGATIVE INTEGERS ARE NOT ALLOWED")
 
 		current_node = self.head
 		while current_node:
