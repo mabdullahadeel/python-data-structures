@@ -9,6 +9,19 @@ class CircularLinkedList:
         self.head = None
 
 
+    def __len__(self):
+        current_node = self.head
+        count = 0
+
+        while current_node:
+            count += 1
+            current_node = current_node.next
+            if current_node == self.head:
+                break
+
+        return count
+
+
     def append(self, data):
         if not self.head:
             self.head = Node(data)
@@ -46,3 +59,45 @@ class CircularLinkedList:
             current_node = current_node.next
             if current_node == self.head:
                 break
+
+
+    def remove_node(self, key):
+        """
+            Removing the node from the circular linked list
+            Assumptions: There is no duplicate node -> the node
+            to be removed is occurring once
+        """
+        if self.head:
+            if self.head.data == key:        # node to delete is head
+                last_node = self.head
+
+                while last_node.next != self.head:
+                    last_node = last_node.next
+
+                if self.head == self.head.next:     # head is the only element in the list
+                    self.head = None
+                else:
+                    last_node.next = self.head.next
+                    self.head = self.head.next
+            else:
+                current_node = self.head
+                prev_node = None
+
+                while current_node.next != self.head:
+                    prev_node = current_node
+                    current_node = current_node.next
+
+                    if current_node.data == key:
+                        prev_node.next = current_node.next
+                        current_node = current_node.next
+        else:
+            raise ValueError(
+                "CANNOT REMOVE NODE FROM EMPTY CIRCULAR LINKED LIST"
+            )
+
+
+    def split_list(self):
+        """
+            Splitting the circular linked list into two halves
+        """
+        pass

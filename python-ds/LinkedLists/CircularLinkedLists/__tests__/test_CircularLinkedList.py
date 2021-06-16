@@ -1,4 +1,6 @@
 from ..CircularLinkedLists import CircularLinkedList
+import pytest
+
 
 class HelpTestCircularLinkedList(CircularLinkedList):
     """
@@ -45,5 +47,22 @@ class TestCircularLinkedList:
             cllist.append(i)
 
         cllist.prepend("A")
+
+        assert cllist.get_circular_linked_list_as_list() == sample_output
+
+
+    def test_remove_node(self):
+        cllist = HelpTestCircularLinkedList()
+        test_sample = ["A", "B", "C", "D", "E", "F"]
+        sample_output = ["B", "D", "E", "F"]
+
+        # Checking the error state
+        with pytest.raises(ValueError):
+            cllist.remove_node("A")
+
+        for i in test_sample:
+            cllist.append(i)
+        cllist.remove_node("A")
+        cllist.remove_node("C")
 
         assert cllist.get_circular_linked_list_as_list() == sample_output
