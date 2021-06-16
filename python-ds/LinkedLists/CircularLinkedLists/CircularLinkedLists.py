@@ -61,7 +61,7 @@ class CircularLinkedList:
                 break
 
 
-    def remove_node(self, key):
+    def remove_node_by_data(self, key):
         """
             Removing the node from the circular linked list
             Assumptions: There is no duplicate node -> the node
@@ -100,4 +100,34 @@ class CircularLinkedList:
         """
             Splitting the circular linked list into two halves
         """
-        pass
+
+        size = len(self)
+
+        if size == 0:       # Empty List
+            return None
+        if size == 1:       # One element in the list
+            return self.head
+
+        mid = size//2
+        count = 0
+
+        prev_node = Node
+        current_node = self.head
+
+        # Creating the first half
+        while current_node and count < mid:
+            count += 1
+            prev_node = current_node
+            current_node = current_node.next
+        prev_node.next = self.head
+
+        split_list = CircularLinkedList()
+        while current_node.next != self.head:
+            split_list.append(current_node.data)
+            current_node = current_node.next
+        split_list.append(current_node.data)
+
+        return {
+            "first_half": self,
+            "second_half": split_list
+        }

@@ -25,6 +25,21 @@ class HelpTestCircularLinkedList(CircularLinkedList):
         return results
 
 
+    @staticmethod
+    def get_array_from_circular_ll(circular_linked_list):
+        if isinstance(circular_linked_list, CircularLinkedList):
+            results = []
+            current_node = circular_linked_list.head
+
+            while current_node.next:
+                results.append(current_node.data)
+                current_node = current_node.next
+                if current_node == circular_linked_list.head:
+                    break
+
+            return results
+
+
 class TestCircularLinkedList:
 
 
@@ -51,7 +66,7 @@ class TestCircularLinkedList:
         assert cllist.get_circular_linked_list_as_list() == sample_output
 
 
-    def test_remove_node(self):
+    def test_remove_node_by_data(self):
         cllist = HelpTestCircularLinkedList()
         test_sample = ["A", "B", "C", "D", "E", "F"]
         sample_output = ["B", "D", "E", "F"]
@@ -66,3 +81,19 @@ class TestCircularLinkedList:
         cllist.remove_node("C")
 
         assert cllist.get_circular_linked_list_as_list() == sample_output
+
+
+    def test_split_list(self):
+        cllist = HelpTestCircularLinkedList()
+        test_sample = ["A", "B", "C", "D", "E", "F", "G"]
+
+        for i in test_sample:
+            cllist.append(i)
+
+        split_list = cllist.split_list()
+
+        assert (
+            (cllist.get_array_from_circular_ll(split_list["first_half"]) == test_sample[0:3])
+            and
+            (cllist.get_array_from_circular_ll(split_list["second_half"]) == test_sample[3:])
+        )
