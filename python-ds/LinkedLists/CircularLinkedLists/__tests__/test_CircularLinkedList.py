@@ -1,5 +1,6 @@
-from ..CircularLinkedLists import CircularLinkedList
 import pytest
+from ..CircularLinkedLists import CircularLinkedList
+from ..is_CircularLinkedList import is_circular_linked_list
 
 
 class HelpTestCircularLinkedList(CircularLinkedList):
@@ -73,12 +74,12 @@ class TestCircularLinkedList:
 
         # Checking the error state
         with pytest.raises(ValueError):
-            cllist.remove_node("A")
+            cllist.remove_node_by_data("A")
 
         for i in test_sample:
             cllist.append(i)
-        cllist.remove_node("A")
-        cllist.remove_node("C")
+        cllist.remove_node_by_data("A")
+        cllist.remove_node_by_data("C")
 
         assert cllist.get_circular_linked_list_as_list() == sample_output
 
@@ -97,3 +98,18 @@ class TestCircularLinkedList:
             and
             (cllist.get_array_from_circular_ll(split_list["second_half"]) == test_sample[3:])
         )
+
+
+def test_is_circular_linked_list():
+    cllist = HelpTestCircularLinkedList()
+    test_samples = ["A", "B", "C"]
+
+    # Testing Exception
+    with pytest.raises(ValueError):
+        is_circular_linked_list("random_invalid_instance")
+
+    for i in test_samples:
+        cllist.append(i)
+
+
+    assert is_circular_linked_list(cllist) == True
