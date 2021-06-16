@@ -105,7 +105,7 @@ class TestSinglyLinkedLists:
         assert passed_head_deletion and passed_body_deletion
 
 
-    def test_legth(self):
+    def test_length(self):
         llist = HelpTestSinglyLinkedList()
         test_samples = [True, 1, "A", "B", 2, "C"]
         for i in test_samples:
