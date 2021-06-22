@@ -71,3 +71,25 @@ class DoublyLinkedList:
                 return
 
             current_node = current_node.next
+
+
+    def insert_node_before(self, key, data):
+        """
+            create new node and add/insert that node right before
+            the node with provided key
+        """
+        current_node = self.head
+        while current_node:
+            if current_node.prev is None and current_node.data == key:      # case when inserting node at the beginning
+                self.prepend(data=data)
+                return
+            elif current_node.data == key:
+                new_node = Node(data=data)
+                prev_node = current_node.prev
+                prev_node.next = new_node
+                current_node.prev = new_node
+                new_node.next = current_node
+                current_node.prev = prev_node
+                return
+
+            current_node = current_node.next
