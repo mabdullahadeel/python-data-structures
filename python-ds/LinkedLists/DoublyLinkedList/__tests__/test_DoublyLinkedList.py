@@ -44,3 +44,19 @@ class TestDoublyLinkedList:
             dllist.append(i)
         dllist.prepend("A")
         assert dllist.get_doubly_linked_list_as_array() == test_output
+
+
+    def test_insert_after_node(self):
+        dllist = HelperTestDoublyLinkedList()
+        test_samples = ["A", "C", "D"]
+        test_output = ["A", "B", "C", "D", "E"]
+
+        for i in test_samples:
+            dllist.append(i)
+
+        # inserting in the middle -> inserting "B" after "A"
+        dllist.insert_after_node("A", "B")
+        # inserting at the end of the list -> inserting "E" after "D"
+        dllist.insert_after_node("D", "E")
+
+        assert dllist.get_doubly_linked_list_as_array() == test_output

@@ -50,3 +50,24 @@ class DoublyLinkedList:
             print(current_node.data)
             current_node = current_node.next
 
+
+    def insert_after_node(self, key, data):
+        """
+            create new node and add/insert that node right after
+            the node with provided key
+        """
+        current_node = self.head
+        while current_node:
+            if current_node.next is None and current_node.data == key:      # case when inserting at the end of the list
+                self.append(data)
+                return
+            elif current_node.data == key:
+                new_node = Node(data=data)
+                next_node = current_node.next
+                current_node.next = new_node
+                new_node.next = next_node
+                new_node.prev = current_node
+                next_node.prev = new_node
+                return
+
+            current_node = current_node.next
