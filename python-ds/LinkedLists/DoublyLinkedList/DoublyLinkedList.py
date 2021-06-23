@@ -167,3 +167,17 @@ class DoublyLinkedList:
 
         if temp:
             self.head = temp.prev
+
+
+    def remove_duplicates(self):
+        already_seen = []
+        current_node = self.head
+
+        while current_node:
+            if current_node.data not in already_seen:
+                already_seen.append(current_node.data)
+                current_node = current_node.next
+            else:
+                next_node = current_node.next
+                self.delete_node(current_node.data)
+                current_node = next_node

@@ -133,3 +133,14 @@ class TestDoublyLinkedList:
         assert dllist.get_doubly_linked_list_as_array() == test_sample[::-1]
 
 
+    def test_remove_duplicates(self):
+        dllist = HelperTestDoublyLinkedList()
+        test_samples = ["A", "B", "C", "A"]
+
+        for i in test_samples:
+            dllist.append(i)
+
+        dllist.remove_duplicates()
+
+        assert dllist.get_doubly_linked_list_as_array() == test_samples[1:]
+
