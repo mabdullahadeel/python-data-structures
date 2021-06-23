@@ -93,3 +93,63 @@ class DoublyLinkedList:
                 return
 
             current_node = current_node.next
+
+
+    def delete_node(self, key):
+        """
+            deleting node with provided data
+            Assumptions: There is only one node with the given data i-e first node
+            with the data passed to the method will be deleted. To delete two nodes
+            having same data, this method needs to be called twice.
+
+            CASES:
+                CASE I: deleting the only node present in the list (list has only one node)
+                CASE II: deleting head node
+                CASE III: deleting node other than head where `current.next` is not `None`
+                        i-e the node to be deleted is not the head node nor the last node.
+                CASE IV: deleting node other than head where `current.next` is `None`
+                        i-e node to be deleted is the last node of the list
+        """
+
+        current_node = self.head
+        while current_node:
+            if current_node.data == key and current_node == self.head:
+                # CASE I
+                if not current_node.next:   # making sure next node is None means the head is the only node
+                    current_node = None
+                    self.head = None
+                    return
+
+                # CASE 2
+                else:
+                    next_node = current_node.next
+                    current_node.next = None
+                    next_node.prev = None
+                    current_node = None
+                    self.head = next_node
+                    return
+
+            elif current_node.data == key:
+                # CASE 3
+                if current_node.next:
+                    next_node = current_node.next
+                    prev_node = current_node.prev
+
+                    prev_node.next = next_node
+                    next_node.prev = prev_node
+
+                    current_node.next = None
+                    current_node.prev = None
+                    current_node = None
+                    return
+
+                # CASE IV
+                else:
+                    prev_node = current_node.prev
+
+                    prev_node.next = None
+                    current_node.prev = None
+                    current_node = None
+                    return
+
+            current_node = current_node.next

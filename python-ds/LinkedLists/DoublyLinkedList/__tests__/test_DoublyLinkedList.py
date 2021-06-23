@@ -76,3 +76,48 @@ class TestDoublyLinkedList:
         dllist.insert_node_before(key="D", data="C")
 
         assert dllist.get_doubly_linked_list_as_array() == test_output
+
+
+    def test_delete_node(self):
+        # testing the case I
+        dllist_c1 = HelperTestDoublyLinkedList()
+        test_samples_c1 = ["A"]
+
+        for i in test_samples_c1:
+            dllist_c1.append(i)
+
+        dllist_c1.delete_node(key="A")
+        assert dllist_c1.get_doubly_linked_list_as_array() == []
+
+        # testing case 2
+        dllist_c2 = HelperTestDoublyLinkedList()
+        test_samples_c2 = ["A", "B"]
+
+        for i in test_samples_c2:
+            dllist_c2.append(i)
+
+        dllist_c2.delete_node(key="A")
+        assert dllist_c2.get_doubly_linked_list_as_array() == [test_samples_c2[-1]]
+
+        # testing case 3
+        dllist_c3 = HelperTestDoublyLinkedList()
+        test_samples_c3 = ["A", "B", "C"]
+        test_output_c3 = ["A", "C"]
+
+        for i in test_samples_c3:
+            dllist_c3.append(i)
+
+        dllist_c3.delete_node(key="B")
+        assert dllist_c3.get_doubly_linked_list_as_array() == test_output_c3
+
+        # testing case 4
+        dllist_c4 = HelperTestDoublyLinkedList()
+        test_samples_c4 = ["A", "B", "C"]
+
+        for i in test_samples_c4:
+            dllist_c4.append(i)
+
+        dllist_c4.delete_node(key="C")
+        assert dllist_c4.get_doubly_linked_list_as_array() == test_samples_c4[0:2]
+
+
