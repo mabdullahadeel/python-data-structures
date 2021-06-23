@@ -121,3 +121,15 @@ class TestDoublyLinkedList:
         assert dllist_c4.get_doubly_linked_list_as_array() == test_samples_c4[0:2]
 
 
+    def test_reverse(self):
+        dllist = HelperTestDoublyLinkedList()
+        test_sample = ["A", "B", "C"]
+
+        for i in test_sample:
+            dllist.append(i)
+
+        dllist.reverse()
+
+        assert dllist.get_doubly_linked_list_as_array() == test_sample[::-1]
+
+
