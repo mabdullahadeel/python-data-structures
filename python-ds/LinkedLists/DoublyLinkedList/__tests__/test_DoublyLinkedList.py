@@ -1,4 +1,5 @@
 from ..DoublyLinkedList import DoublyLinkedList
+from ..pairsWithSum import find_pais_with_sum
 
 
 class HelperTestDoublyLinkedList(DoublyLinkedList):
@@ -144,3 +145,12 @@ class TestDoublyLinkedList:
 
         assert dllist.get_doubly_linked_list_as_array() == test_samples[1:]
 
+
+def test_pair_with_sum():
+    dllist = HelperTestDoublyLinkedList()
+    test_sample = [1, 2, 3, 4, 5]
+
+    for i in test_sample:
+        dllist.append(i)
+
+    assert find_pais_with_sum(sum_value=5, doubly_linked_list=dllist) == ['(1,4)', '(2,3)']
