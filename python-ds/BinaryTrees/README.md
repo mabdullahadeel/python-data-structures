@@ -55,3 +55,44 @@ A full binary tree (sometimes referred to as a proper or plane binary tree) is a
 `0` or `2` children.
 
 ![Complete Binary Tree](imgs/full_bt.PNG)
+
+<hr>
+
+## Approaches
+Tree Traversal is the process of visiting (checking or updating) each node in a tree data structure, exactly once. 
+Unlike linked lists or one-dimensional arrays that are canonically traversed in linear order, 
+trees maybe traversed in multiple ways. They may be traversed in `depth-first` or `breadth-first` 
+order.
+
+There are three common ways to traverse a tree in depth-first order
+
+- Pre-order
+- In-order
+- Post-order
+
+#### Pre-order Traversal
+
+Here is common approach/algorithm considered while considering `pre-order` traversal.
+
+- 1- Check if current node is empty/null.
+- 2- Display or Store `data/value` part of the root(current node)
+- 3- Traverse the left sub-tree by recursively calling the pre-order method.
+- 4- Traverse the right sub-tree by recursively calling pre-order method.
+
+#### In-order Traversal
+
+Here is common approach/algorithm considered while considering `in-order` traversal.
+
+- 1- Check if current node is empty/null.
+- 2- Traverse the left sub-tree by recursively calling the Display or Store `data/value` part of the root(current node)
+- 3- Display or Store `data/value` part of the root(current node)
+- 4- Traverse the right sub-tree by recursively calling in-order method.
+
+#### Post-order Traversal
+
+Here is common approach/algorithm considered while considering `post-order` traversal.
+
+- 1- Check if current node is empty/null.
+- 2- Traverse the left sub-tree by recursively calling the post-order method.
+- 3- Traverse the right sub-tree by recursively calling post-order method.
+- 4- Display or Store `data/value` part of the root(current node).
