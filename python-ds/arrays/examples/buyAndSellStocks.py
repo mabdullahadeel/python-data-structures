@@ -28,3 +28,17 @@ def buy_n_sell_brute_force(prices_array):
         'max_profit': max_profit,
         'indexes': max_profit_index
     }
+
+
+def buy_n_sell_stocks_track(prices_array):
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
+    max_profit = 0.0
+    min_price = float('inf')    # infinity
+
+    for price in prices_array:
+        min_price = min(min_price, price)
+        compared_profit = price - min_price
+        max_profit = max(max_profit, compared_profit)
+
+    return max_profit
