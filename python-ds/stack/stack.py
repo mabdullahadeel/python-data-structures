@@ -3,28 +3,28 @@ Stack data structure is way of
 storing | organizing data in the
 form of stacks. These stacks are
 books stack i-e piling books on
-top of eachother
+top of each other
 """
 
-class Stack():
-	'''
-		The stack implimented in this
+class Stack:
+	"""
+		The stack implemented in this
 		class uses reverse list operations
-		prvided by python built-in 'list' class
+		provided by python built-in 'list' class
 		i-e The last element in the list
 		is the top element of the stack
-	'''
+	"""
 	def __init__(self):
 		self.items = []
 
 
 	def push(self, item):
-		'''Add to the end of the list -> Top in stack'''
+		"""Add to the end of the list -> Top in stack"""
 		self.items.append(item)
 
 
 	def pop(self):
-		'''Remove the last element from the list -> Top from stack'''
+		"""Remove the last element from the list -> Top from stack"""
 		return self.items.pop()
 
 
@@ -36,9 +36,6 @@ class Stack():
 		"""
 			Returns the last inserted item in the stack i-e
 			the item at the top of the stack
-			- -->
-			-
-			-
 		"""
 		if not self.is_empty():
 			return self.items[-1]
