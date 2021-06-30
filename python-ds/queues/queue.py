@@ -20,13 +20,19 @@ class Queue(object):
 
 
     def dequeue(self):
+        """ remove one item from the last and return it."""
         if not self.is_empty():
             return self.items.pop()
 
 
     def peek(self):
+        """
+            Returns the last element form the list
+            which actually will be the front of the
+            queue.
+        """
         if not self.is_empty():
-            return self.items[-1].value
+            return self.items[-1]
 
 
     def __len__(self):
