@@ -30,3 +30,13 @@ def test_binary_tree():
     assert tree.get_binary_tree(traversal_type="preorder", tree=tree) == "1-2-4-5-3-6-7-"
     assert tree.get_binary_tree(traversal_type="inorder", tree=tree) == "4-2-5-1-6-3-7-"
     assert tree.get_binary_tree(traversal_type="postorder", tree=tree) == "4-5-2-6-7-3-1-"
+
+
+def test_level_order_traversal():
+    tree = BinaryTree(1)
+    tree.root.left = Node(2)
+    tree.root.right = Node(3)
+    tree.root.left.left = Node(4)
+    tree.root.left.right = Node(5)
+
+    assert tree.get_binary_tree(traversal_type="levelorder", tree=tree) == "1-2-3-4-5-"

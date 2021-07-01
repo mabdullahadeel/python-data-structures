@@ -96,3 +96,11 @@ Here is common approach/algorithm considered while considering `post-order` trav
 - 2- Traverse the left sub-tree by recursively calling the post-order method.
 - 3- Traverse the right sub-tree by recursively calling post-order method.
 - 4- Display or Store `data/value` part of the root(current node).
+
+<hr>
+
+### Level Order Traversal
+The output of the level order traversal is shown in te figure below. This tells how
+this traversal operates on binary tree.
+
+![Level Order](imgs/level_order.PNG)

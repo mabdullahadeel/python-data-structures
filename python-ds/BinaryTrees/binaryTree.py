@@ -1,3 +1,5 @@
+from .helper_queue import Queue
+
 class Node(object):
     def __init__(self, value):
         self.value = value
@@ -19,16 +21,19 @@ class BinaryTree(object):
                 - preorder
                 - inorder
                 - postorder
+                - levelorder
         """
-        supported_types =["preorder", "inorder", "postorder"]
+        supported_types =["preorder", "inorder", "postorder", "levelorder"]
         if traversal_type not in supported_types:
             raise ValueError(f"Traversal Type {traversal_type} is not supported. ")
         if traversal_type == supported_types[0]:
             return self.preorder(start=tree.root, traversal="")
         elif traversal_type == supported_types[1]:
             return self.inorder(start=tree.root, traversal="")
-        else:
+        elif traversal_type == supported_types[2]:
             return self.postorder(start=tree.root, traversal="")
+        elif traversal_type == supported_types[3]:
+            return self.level_order_traversal(start=tree.root)
 
 
     def preorder(self, start, traversal):
@@ -59,3 +64,29 @@ class BinaryTree(object):
             traversal += (str(start.value) + "-")
 
         return traversal
+
+
+    def level_order_traversal(self, start):
+        """
+            This type of traversal uses Queue to store data while operation
+            to get the desired result
+        """
+        if start is None:
+            raise ValueError("start node not specified.")
+
+        queue = Queue()
+        queue.enqueue(start)
+
+        traversal = ""
+
+        while len(queue) > 0:
+            traversal += str(queue.peek()) + "-"
+            node = queue.dequeue()
+
+            if node.left:
+                queue.enqueue(node.left)
+            if node.right:
+                queue.enqueue(node.right)
+
+        return traversal
+
