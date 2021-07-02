@@ -133,3 +133,15 @@ class BinaryTree(object):
 
         return 1 + max(left_height, right_height)
 
+
+    def size(self, node, res=0):
+        """
+          Size of the binary tree is the total number of nodes in the tree
+        """
+        if node:
+            res += 1
+            res = self.size(node=node.left, res=res)
+            res = self.size(node=node.right, res=res)
+
+        return res
+
