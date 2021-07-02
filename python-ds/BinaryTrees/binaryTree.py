@@ -1,4 +1,5 @@
 from .helper_queue import Queue
+from .helper_stack import Stack
 
 class Node(object):
     def __init__(self, value):
@@ -23,7 +24,7 @@ class BinaryTree(object):
                 - postorder
                 - levelorder
         """
-        supported_types =["preorder", "inorder", "postorder", "levelorder"]
+        supported_types =["preorder", "inorder", "postorder", "levelorder", "reverse_levelorder"]
         if traversal_type not in supported_types:
             raise ValueError(f"Traversal Type {traversal_type} is not supported. ")
         if traversal_type == supported_types[0]:
@@ -34,6 +35,8 @@ class BinaryTree(object):
             return self.postorder(start=tree.root, traversal="")
         elif traversal_type == supported_types[3]:
             return self.level_order_traversal(start=tree.root)
+        elif traversal_type == supported_types[4]:
+            return self.reverse_level_order_traversal(start=tree.root)
 
 
     def preorder(self, start, traversal):
@@ -87,6 +90,33 @@ class BinaryTree(object):
                 queue.enqueue(node.left)
             if node.right:
                 queue.enqueue(node.right)
+
+        return traversal
+
+
+    def reverse_level_order_traversal(self, start):
+        if start is None:
+            raise ValueError("start node not specified.")
+
+        queue = Queue()
+        stack = Stack()
+        queue.enqueue(start)
+
+        traversal = ""
+
+        while len(queue) > 0:
+            node = queue.dequeue()
+
+            stack.push(node)
+
+            if node.right:
+                queue.enqueue(node.right)
+            if node.left:
+                queue.enqueue(node.left)
+
+        while len(stack) > 0:
+            node = stack.pop()
+            traversal += str(node.value) + "-"
 
         return traversal
 

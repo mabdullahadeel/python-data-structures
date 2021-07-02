@@ -40,3 +40,13 @@ def test_level_order_traversal():
     tree.root.left.right = Node(5)
 
     assert tree.get_binary_tree(traversal_type="levelorder", tree=tree) == "1-2-3-4-5-"
+
+
+def test_reverse_level_order_traversal():
+    tree = BinaryTree(1)
+    tree.root.left = Node(2)
+    tree.root.right = Node(3)
+    tree.root.left.left = Node(4)
+    tree.root.left.right = Node(5)
+
+    assert tree.get_binary_tree(traversal_type="reverse_levelorder", tree=tree) == "4-5-2-3-1-"
