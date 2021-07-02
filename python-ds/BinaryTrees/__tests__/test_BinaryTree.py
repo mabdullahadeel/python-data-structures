@@ -50,3 +50,20 @@ def test_reverse_level_order_traversal():
     tree.root.left.right = Node(5)
 
     assert tree.get_binary_tree(traversal_type="reverse_levelorder", tree=tree) == "4-5-2-3-1-"
+
+
+def test_height_bn():
+    # Calculate height of binary tree:
+    #     1
+    #    / \
+    #   2  3
+    #  / \
+    # 4  5
+    #
+    tree = BinaryTree(1)
+    tree.root.left = Node(2)
+    tree.root.right = Node(3)
+    tree.root.left.left = Node(4)
+    tree.root.left.right = Node(5)
+
+    assert tree.height(node=tree.root) == 2
