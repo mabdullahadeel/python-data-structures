@@ -79,7 +79,7 @@ class BST(object):
         if current.data < to_delete:
             # the node to delete lies in the right subtree
             current.right = self._delete(current=current.right, to_delete=to_delete)
-        if current.data > to_delete:
+        elif current.data > to_delete:
             # node to delete lies in the left sub-tree
             current.left = self._delete(current=current.left, to_delete=to_delete)
         else:       # the current node is the node to delete
@@ -98,7 +98,7 @@ class BST(object):
             '''Then before deleting the node, find the smallest in its right subtree and 
             replace the node data with that to satisfy the BST properties.'''
             # 1 - Finding the smallest node in the right subtree -> inorder successor
-            temp = self.min_sub_tree_val(sub_tree_root=root.right)
+            temp = self.min_sub_tree_val(sub_tree_root=current.right)
             # 2 - Copy the inorder successor to content to the current node which is node going to be deleted
             current.data = temp.data
             # 3 - Deleting the inorder successor since these is now duplicate of it down in the right subtree
@@ -107,13 +107,11 @@ class BST(object):
 
         return current
 
-    @static
-    def min_sub_tree_val(self, sub_tree_root):
+    @staticmethod
+    def min_sub_tree_val(sub_tree_root):
         current_node = sub_tree_root
         # loop down to find the left most which will be the minimum
         while current_node.left is not None:
             current_node = current_node.left
 
         return current_node
-
-
